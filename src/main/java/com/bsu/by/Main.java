@@ -6,25 +6,27 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        try (Scanner sc = new Scanner(System.in)) {
 
-        System.out.println("length of the main diagonal");
-        int diagonalLength = sc.nextInt();
-        if (diagonalLength <= 0) {
-            throw new IllegalArgumentException(Integer.toString(diagonalLength));
+            System.out.println("length of the main diagonal");
+            int diagonalLength = sc.nextInt();
+            if (diagonalLength <= 0) {
+                throw new IllegalArgumentException(Integer.toString(diagonalLength));
+            }
+
+            int[][] arr1 = randMatrix(new int[diagonalLength][diagonalLength]);
+            int[][] arr2 = randMatrix(new int[diagonalLength][diagonalLength]);
+
+            outputArr(arr1);
+            System.out.println();
+            outputArr(arr2);
+            System.out.println();
+            outputArr(calcMatrix(arr1, arr2));
+            System.out.println();
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Invalid diagonal length");
         }
 
-        int[][] arr1 = randMatrix(new int[diagonalLength][diagonalLength]);
-        int[][] arr2 = randMatrix(new int[diagonalLength][diagonalLength]);
-
-        outputArr(arr1);
-        System.out.println();
-        outputArr(arr2);
-        System.out.println();
-        outputArr(calcMatrix(arr1, arr2));
-        System.out.println();
-
-        sc.close();
     }
 
 
